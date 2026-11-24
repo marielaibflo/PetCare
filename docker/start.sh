@@ -7,6 +7,8 @@ cd /app
 if [ -z "$APP_KEY" ] && ! grep -q '^APP_KEY=base64' .env; then php artisan key:generate --force; fi
 if [ "$DB_CONNECTION" = "pgsql" ]; then
   php artisan migrate --force
+  # perfiles de prueba (Juan, Veterinaria Patitas, admin de demostración) y fotos de sus productos
+  php artisan db:seed --class=ArranqueSeeder --force
 elif [ ! -f database/database.sqlite ]; then
   touch database/database.sqlite
   php artisan migrate --force --seed
@@ -15,6 +17,8 @@ else
 fi
 php artisan config:clear
 php artisan view:cache >/dev/null 2>&1 || true
+# Igual que en la computadora: muestra las cuentas de demostración en el inicio de sesión
+export APP_ENV="${PETCARE_APP_ENV:-local}"
 export PHP_CLI_SERVER_WORKERS=${PHP_CLI_SERVER_WORKERS:-4}
 # Se usa el servidor de PHP directo (no "artisan serve"), para que reciba las variables de Render (Supabase, etc.)
 cd public
