@@ -188,6 +188,11 @@ td .acts{display:flex;gap:6px}
 .demo b{color:var(--ink)}
 .lnk{color:var(--p);font-weight:700}
 .hero-mob{max-width:300px;margin:22px auto 0}
+/* Separador «o» y botón Continuar con Google en el inicio de sesión */
+.o-sep{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:13px}
+.o-sep::before,.o-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.btn-google{background:#fff;color:var(--ink,#1d1b2c);border:1.5px solid var(--line)}
+.btn-google:hover{background:var(--p-l)}
 .redes{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
 .redes>span{font-size:13px;font-weight:600;color:var(--mut);margin-right:4px}
 .red{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:700;color:#fff;transition:transform .15s,box-shadow .15s}

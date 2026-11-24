@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\RegistroVeterinariaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\Propietario;
 use App\Http\Controllers\VerificacionController;
@@ -20,6 +21,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'welcome'])->name('welcome');
     Route::get('/login/{rol}', [AuthController::class, 'showLogin'])->whereIn('rol', ['propietario', 'veterinaria', 'administrador'])->name('login');
     Route::post('/login/{rol}', [AuthController::class, 'login'])->whereIn('rol', ['propietario', 'veterinaria', 'administrador'])->middleware('throttle:10,1');
+    // Iniciar sesión con la cuenta de Google
+    Route::get('/login/{rol}/google', [GoogleController::class, 'redirigir'])->whereIn('rol', ['propietario', 'veterinaria', 'administrador'])->middleware('throttle:10,1')->name('google.redirect');
+    Route::get('/auth/google/callback', [GoogleController::class, 'volver'])->middleware('throttle:10,1')->name('google.callback');
     Route::get('/registro', [AuthController::class, 'showRegistro'])->name('registro');
     Route::post('/registro', [AuthController::class, 'registro']);
     // Registro en línea de clínicas veterinarias

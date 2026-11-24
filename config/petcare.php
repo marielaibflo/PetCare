@@ -23,6 +23,14 @@ return [
     // Días de anticipación para el recordatorio de vacunas y desparasitaciones.
     'dias_recordatorio' => 7,
 
+    // Iniciar sesión con Google (OAuth). Se crean en console.cloud.google.com → Credenciales.
+    // Si quedan vacíos, el botón «Continuar con Google» no aparece.
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'), // vacío = se usa la dirección actual + /auth/google/callback
+    ],
+
     'verificacion' => [
         'minutos' => 15,   // vigencia de cada código
         'intentos' => 5,   // intentos permitidos por código

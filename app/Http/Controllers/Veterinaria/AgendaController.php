@@ -24,7 +24,7 @@ class AgendaController extends Controller
             $q->where('estado', $filtro);
         }
 
-        return view('veterinaria.agenda', ['citas' => $q->orderByRaw("CASE WHEN urgente = 1 AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('fecha')->orderBy('hora')->get(), 'filtro' => $filtro, 'filtros' => self::FILTROS]);
+        return view('veterinaria.agenda', ['citas' => $q->orderByRaw("CASE WHEN urgente = '1' AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('fecha')->orderBy('hora')->get(), 'filtro' => $filtro, 'filtros' => self::FILTROS]);
     }
 
     public function confirmar(Request $request, Cita $cita)

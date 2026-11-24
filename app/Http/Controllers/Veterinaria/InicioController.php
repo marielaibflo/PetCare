@@ -20,8 +20,8 @@ class InicioController extends Controller
 
         return view('veterinaria.inicio', [
             'vet' => $vet,
-            'hoy' => (clone $base)->whereDate('fecha', $hoy)->where('estado', '!=', 'cancelada')->orderByRaw("CASE WHEN urgente = 1 AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('hora')->get(),
-            'pendientes' => (clone $base)->where('estado', 'pendiente')->whereDate('fecha', '>', $hoy)->orderByRaw("CASE WHEN urgente = 1 AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('fecha')->orderBy('hora')->get(),
+            'hoy' => (clone $base)->whereDate('fecha', $hoy)->where('estado', '!=', 'cancelada')->orderByRaw("CASE WHEN urgente = '1' AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('hora')->get(),
+            'pendientes' => (clone $base)->where('estado', 'pendiente')->whereDate('fecha', '>', $hoy)->orderByRaw("CASE WHEN urgente = '1' AND estado IN ('pendiente','confirmada') THEN 0 ELSE 1 END")->orderBy('fecha')->orderBy('hora')->get(),
             'stats' => [
                 'citas_hoy' => (clone $base)->whereDate('fecha', $hoy)->where('estado', '!=', 'cancelada')->count(),
                 'atenciones_hoy' => (clone $atenciones)->whereDate('fecha', $hoy)->count(),

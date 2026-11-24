@@ -14,7 +14,7 @@ class PropietarioController extends Controller
     {
         $q = trim((string) $request->query('q'));
         $lista = User::where('rol', User::PROPIETARIO)->with('mascotas')
-            ->when($q !== '', fn ($w) => $w->where(fn ($x) => $x->where('name', 'like', "%{$q}%")->orWhere('email', 'like', "%{$q}%")->orWhere('telefono', 'like', "%{$q}%")))
+            ->when($q !== '', fn ($w) => $w->where(fn ($x) => $x->whereLike('name', "%{$q}%")->orWhereLike('email', "%{$q}%")->orWhereLike('telefono', "%{$q}%")))
             ->latest('id')->paginate(20)->withQueryString();
 
         return view('admin.propietarios', ['propietarios' => $lista, 'q' => $q]);

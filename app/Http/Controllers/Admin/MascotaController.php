@@ -12,8 +12,8 @@ class MascotaController extends Controller
     {
         $q = trim((string) $request->query('q'));
         $lista = Mascota::with(['propietario', 'afiliacionActiva.plan', 'afiliacionActiva.veterinaria'])
-            ->when($q !== '', fn ($w) => $w->where(fn ($x) => $x->where('nombre', 'like', "%{$q}%")->orWhere('raza', 'like', "%{$q}%")->orWhere('especie', 'like', "%{$q}%")
-                ->orWhereHas('propietario', fn ($p) => $p->where('name', 'like', "%{$q}%"))))
+            ->when($q !== '', fn ($w) => $w->where(fn ($x) => $x->whereLike('nombre', "%{$q}%")->orWhereLike('raza', "%{$q}%")->orWhereLike('especie', "%{$q}%")
+                ->orWhereHas('propietario', fn ($p) => $p->whereLike('name', "%{$q}%"))))
             ->latest('id')->paginate(20)->withQueryString();
 
         return view('admin.mascotas', ['mascotas' => $lista, 'q' => $q]);

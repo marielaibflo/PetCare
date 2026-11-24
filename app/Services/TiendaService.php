@@ -39,7 +39,7 @@ class TiendaService
         $agotados = Producto::whereIn('veterinaria_id', $vets->keys())->where('activo', true)->where('en_tienda', true)->where('stock', 0)->pluck('id')->all();
 
         return Producto::with('veterinaria')->whereIn('id', array_merge($visibles, $agotados))
-            ->when($f['q'] ?? null, fn ($q, $t) => $q->where(fn ($w) => $w->where('nombre', 'like', "%{$t}%")->orWhere('descripcion', 'like', "%{$t}%")))
+            ->when($f['q'] ?? null, fn ($q, $t) => $q->where(fn ($w) => $w->whereLike('nombre', "%{$t}%")->orWhereLike('descripcion', "%{$t}%")))
             ->when($f['categoria'] ?? null, fn ($q, $c) => $q->where('categoria', $c))
             ->when($f['veterinaria'] ?? null, fn ($q, $v) => $q->where('veterinaria_id', $v))
             ->when($f['max'] ?? null, fn ($q, $m) => $q->where('precio', '<=', (float) $m))

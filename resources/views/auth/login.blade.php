@@ -20,6 +20,10 @@
   <div><label for="pw">Contraseña</label><input class="in" id="pw" name="password" type="password" autocomplete="current-password" placeholder="••••••" required data-msg="Escribe tu contraseña."></div>
   <label class="cb" style="border:0;padding:0"><input type="checkbox" name="recordar" value="1"> Mantener la sesión iniciada</label>
   <button class="btn full" type="submit">Iniciar sesión</button>
+  @if(\App\Http\Controllers\GoogleController::activo())
+    <div class="o-sep"><span>o</span></div>
+    <a class="btn full sec btn-google" href="{{ route('google.redirect', $rol) }}"><x-icon name="user"/> Continuar con Google</a>
+  @endif
   @if($rol === 'propietario')
     <div style="text-align:center;font-size:14px">¿No tienes cuenta? <a class="lnk" href="{{ route('registro') }}">Regístrate</a></div>
   @else

@@ -18,7 +18,15 @@
     <div class="card pad verif {{ $hecho ? 'ok' : '' }}">
       <div class="verif-h"><x-icon :name="$hecho ? 'check' : $icono"/><div><b>{{ $titulo }}</b><div class="sub">{{ \App\Services\VerificacionService::destinoVisible($user, $canal) }}</div></div>
         @if($hecho)<span class="chip ok">Verificado</span>@endif</div>
-      @unless($hecho)
+      @if(! $hecho && $canal === 'whatsapp' && blank($user->telefono))
+        {{-- Cuenta creada con Google: aún no tiene celular --}}
+        <form class="f" method="POST" action="{{ route('verificacion.telefono') }}" novalidate>
+          @csrf @method('PUT')
+          @if($errors->hasAny(['telefono', 'codigo_pais']))<div class="note bad" role="alert"><x-icon name="alert"/><span>{{ $errors->first('telefono') ?: $errors->first('codigo_pais') }}</span></div>@endif
+          <x-telefono id="vt" :pais="$user->codigo_pais" :numero="$user->telefono" label="Tu número de WhatsApp"/>
+          <button class="btn" type="submit">Enviarme el código</button>
+        </form>
+      @elseif(! $hecho)
         <form class="f" method="POST" action="{{ route('verificacion.verificar', $canal) }}" novalidate>
           @csrf
           @error('codigo_'.$canal)<div class="note bad" role="alert"><x-icon name="alert"/><span>{{ $message }}</span></div>@enderror
@@ -37,7 +45,7 @@
             </form>
           </details>
         @endif
-      @endunless
+      @endif
     </div>
   @endforeach
 
