@@ -1,0 +1,1 @@
+<form class="flt" method="GET"><label class="search"><x-icon name="search"/><span class="sr">Buscar</span><input name="q" value="{{ $q }}" placeholder="{{ $ph }}"></label><button class="btn sec">Buscar</button>@if($q)<a class="btn ghost" href="{{ url()->current() }}">Limpiar</a>@endif</form>

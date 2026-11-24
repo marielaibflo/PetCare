@@ -1,0 +1,6 @@
+<svg viewBox="0 0 440 340" aria-hidden="true"><rect x="30" y="30" width="380" height="270" rx="26" fill="#fff" opacity=".8"/>
+<rect x="60" y="64" width="86" height="86" rx="22" fill="#5B3FD6"/><g transform="translate(79 83) scale(2)" fill="#fff">{!! \App\Support\Iconos::PATA !!}</g>
+<g fill="#C9BFF5"><rect x="186" y="110" width="22" height="40" rx="4"/><rect x="218" y="92" width="22" height="58" rx="4"/><rect x="250" y="70" width="22" height="80" rx="4"/><rect x="282" y="56" width="22" height="94" rx="4"/></g>
+<rect x="186" y="156" width="140" height="6" rx="3" fill="#E3DDFB"/><rect x="60" y="196" width="320" height="96" rx="16" fill="#EFEBFF"/>
+<rect x="84" y="216" width="120" height="12" rx="6" fill="#C9BFF5"/><rect x="84" y="240" width="190" height="10" rx="5" fill="#DDD5FA"/><rect x="84" y="260" width="150" height="10" rx="5" fill="#DDD5FA"/>
+<circle cx="330" cy="244" r="30" fill="#5B3FD6"/><path d="M316 244l9 9 18-20" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>

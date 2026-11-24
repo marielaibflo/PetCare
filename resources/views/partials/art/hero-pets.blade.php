@@ -1,0 +1,3 @@
+<svg viewBox="0 0 520 300" aria-hidden="true"><ellipse cx="260" cy="262" rx="250" ry="34" fill="#5B3FD6" opacity=".12"/>
+<g transform="translate(40 24) scale(2.4)"><path d="M16 120c0-24 14-40 34-40s34 16 34 40v10H16Z" fill="#E8A85A"/>@include('partials.art.dog')</g>
+<g transform="translate(262 78) scale(2.1)"><path d="M20 120c0-24 12-34 30-34s30 10 30 34v10H20Z" fill="#AFA9A4"/>@include('partials.art.cat')</g></svg>
