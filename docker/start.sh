@@ -16,4 +16,6 @@ fi
 php artisan config:clear
 php artisan view:cache >/dev/null 2>&1 || true
 export PHP_CLI_SERVER_WORKERS=${PHP_CLI_SERVER_WORKERS:-4}
-exec php artisan serve --host=0.0.0.0 --port="${PORT:-10000}"
+# Se usa el servidor de PHP directo (no "artisan serve"), para que reciba las variables de Render (Supabase, etc.)
+cd public
+exec php -S 0.0.0.0:"${PORT:-10000}" ../vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php
