@@ -11,7 +11,7 @@ echo "2/5  Instalando el conector de PostgreSQL (solo la primera vez)..."
 if ! php -m | grep -qi pdo_pgsql; then
   sudo apt-get update -y >/dev/null
   sudo apt-get install -y libpq-dev >/dev/null
-  sudo docker-php-ext-install pdo_pgsql pgsql >/dev/null
+  sudo PHP_INI_DIR="${PHP_INI_DIR:-/usr/local/etc/php}" docker-php-ext-install pdo_pgsql pgsql >/dev/null
 fi
 php -m | grep -qi pdo_pgsql && echo "     conector listo"
 
