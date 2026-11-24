@@ -1,0 +1,10 @@
+{
+  "name": "PetCare",
+  "image": "mcr.microsoft.com/devcontainers/php:8.4",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "PetCare", "onAutoForward": "notify" }
+  },
+  "postCreateCommand": "composer install --no-interaction && (test -f .env || cp .env.example .env) && php artisan key:generate --force && touch database/database.sqlite && php artisan migrate --force --seed",
+  "postAttachCommand": "php artisan serve --host=0.0.0.0 --port=8000"
+}
